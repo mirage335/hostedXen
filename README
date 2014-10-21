@@ -1,0 +1,20 @@
+_Installation_
+Simply do "make install" on a compatible Xen Dom0. Then ensure NAT is configured as documented below, and that a pool of IP addresses has been generated.
+
+Instructions on creating a Debian Dom0 are documented at https://wiki.debian.org/Xen#Domain_0_.28Host.29_Installation .
+
+_NAT_
+
+Something like the following will be needed for network configuration in /etc/network/interfaces .
+
+auto br
+	iface br inet static
+	bridge_ports none
+	bridge_stp no
+	address 10.174.0.1
+	netmask 255.255.0.0
+	network 10.174.0.0/16
+	broadcast 10.174.255.255
+
+_InitIPs_
+Run the hxInitIPs script to initialize the pool of usable IP addresses for new Xen servers.

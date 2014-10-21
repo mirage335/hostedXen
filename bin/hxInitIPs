@@ -1,0 +1,13 @@
+#!/bin/bash
+
+mkdir -p /etc/xen-tools/
+
+echo > /etc/xen-tools/ips.txt
+
+for i in $(seq 10 240)
+do
+	for j in $(seq 1 254)
+	do
+		echo 10.174.$i.$j >> /etc/xen-tools/ips.txt	
+	done
+done
