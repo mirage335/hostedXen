@@ -13,6 +13,6 @@ then
 fi
 
 #Update sudo permissions.
-rm /etc/sudoers.d/xen-"$1"
+rm /etc/sudoers.d/xen-$(echo "$1" | cut -f1 -d\.)
 
 /etc/init.d/sudo restart
