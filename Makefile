@@ -1,13 +1,11 @@
 MKDIR_P = mkdir -p
-DESTDIR ?= /
+DESTDIR ?= /usr/
 
 all:
 
 directories:
-	${MKDIR_P} $(DESTDIR)etc/pm/config.d
-	${MKDIR_P} $(DESTDIR)etc/pm/sleep.d
+	${MKDIR_P} $(DESTDIR)usr/bin
 
 install: directories
 
-	install -Dm644 config.d/* $(DESTDIR)etc/pm/config.d/
-	install -Dm744 sleep.d/* $(DESTDIR)etc/pm/sleep.d/
+	install -Dm644 bin/* $(DESTDIR)bin
