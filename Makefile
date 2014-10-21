@@ -8,4 +8,4 @@ directories:
 
 install: directories
 
-	install -Dm644 bin/* $(DESTDIR)bin
+	install -Dm755 bin/* $(DESTDIR)bin
