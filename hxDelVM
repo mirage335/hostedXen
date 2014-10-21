@@ -1,6 +1,17 @@
 #!/bin/bash
 
-#Usage: ./hxDelVM <userName> <VM_Number>
-#Ex: ./hxDelVM testUser 1
+#Usage: ./hxDelVM <hostname> <user>
+#Ex: ./hxDelVM testUser-1.HacDC-shared-m335-1.hacdc.org testUser
 
-xen-delete-image "$1-$2"
+xen-delete-image "$1"
+
+#Update user's xenList.
+if [[ -f /home/"$2"/xenList ]]
+	grep -v "$1" /home/"$2"/xenList > /home/"$2"/xenList.new
+	mv /home/"$2"/xenList.new /home/"$2"/xenList
+fi
+
+#Update sudo permissions.
+rm /etc/sudoers.d/xen-"$1"
+
+/etc/init.d/sudo restart
