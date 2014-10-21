@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#Usage: ./hxNewVM <userName> <VM_Number> <dist>
+#Ex: ./hxNewVM testUser 1 squeeze
+
+mkdir -p /etc/xen/hosted
+xen-create-image --output /etc/xen/hosted --hostname "$1-$2" --ip auto --gateway 10.0.0.1 --netmask 255.255.255.0 --vcpus 2 --pygrub --fs=ext4 --dist "$3"
+mv /etc/xen/hosted/"$1-$2".cfg /etc/xen/hosted/"$1-$2"
+
+mkdir -p /etc/sudoers.d
+echo "$1 ALL=NOPASSWD:/usr/sbin/xm console $1-$2, /usr/sbin/xm create -c /etc/xen/hosted/$1-$2, /usr/sbin/xm create /etc/xen/hosted/$1-$2, /usr/sbin/xm destroy $1-$2, /usr/sbin/reimage-dom $1-$2 ?" > /etc/sudoers.d/xen"$1-$2"
+
+/etc/init.d/sudo restart
