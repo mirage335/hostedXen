@@ -12,3 +12,5 @@ useradd -m -p $randString "$1"
 
 echo "User $1 created with password:
 $randString"
+
+hxNewVM "$1" 1 squeeze
