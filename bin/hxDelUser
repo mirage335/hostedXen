@@ -3,7 +3,7 @@
 #Usage: ./hxDelUser <user>
 #Ex: ./hxDelUser testUser
 
-uniqueId=$RANDOM
+uniqueId=hx-$RANDOM
 mkdir -p /tmp/$uniqueId/
 
 xen-list-images > /tmp/$uniqueId/all
@@ -11,12 +11,16 @@ xen-list-images > /tmp/$uniqueId/all
 for i in $( cat /tmp/$uniqueId/all ); do
 	if [[ $(echo "$i" | tail -n1 | cut -f2- -d\ | cut -f1 -d\. | cut -f1 -d\-) == "$1" ]]
 	then
-		echo "$i" | cut -f2- -d\ ) >> /tmp/$uniqueId/hostnames
+		echo "$i" | cut -f2- -d\ >> /tmp/$uniqueId/hostnames
 	fi
 done
 
-for j in $( cat /tmp/$uniqueId/hostnames)
+for j in $( cat /tmp/$uniqueId/hostnames); do
 	hxDelVM "$j"
 done
+
+rm /tmp/$uniqueId/all
+rm /tmp/$uniqueId/hostnames
+rmdir /tmp/$uniqueId/
 
 userdel -r "$1"

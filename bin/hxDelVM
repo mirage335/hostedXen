@@ -7,6 +7,7 @@ xen-delete-image "$1"
 
 #Update user's xenList.
 if [[ -f /home/"$2"/xenList ]]
+then
 	grep -v "$1" /home/"$2"/xenList > /home/"$2"/xenList.new
 	mv /home/"$2"/xenList.new /home/"$2"/xenList
 fi
