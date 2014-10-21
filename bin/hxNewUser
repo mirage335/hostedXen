@@ -11,9 +11,9 @@ done
 echo "Consider using the following password:"
 echo $randString
 
-useradd -m "$1"
+useradd -m -s "/bin/bash" "$1"
 
-echo "User $1 created with password:
-$randString"
+echo "User $1 created. Add password. Consider: $randomString"
+passwd "$1"
 
 hxNewVM "$1" 1 squeeze
