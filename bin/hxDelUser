@@ -16,7 +16,7 @@ for i in $( cat /tmp/$uniqueId/all ); do
 done
 
 for j in $( cat /tmp/$uniqueId/hostnames); do
-	hxDelVM "$j"
+	hxDelVM "$j" "$1"
 done
 
 rm /tmp/$uniqueId/all
