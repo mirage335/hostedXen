@@ -3,4 +3,4 @@
 #Usage: ./hxDelVM <userName> <VM_Number>
 #Ex: ./hxDelVM testUser 1
 
-xen-delete-image --dir /etc/xen/hosted "$1-$2"
+xen-delete-image hosted/"$1-$2"
