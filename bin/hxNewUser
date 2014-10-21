@@ -6,9 +6,12 @@ randString=$(head -c 6 /dev/urandom | base64 | tr -dc 'a-z0-9')
 while [[ ${#randString} -lt 8 ]]                                                                            
 do                                                                                     
         randString=${randString}$(head -c 4 /dev/random | base64 | tr -dc 'a-z0-9')
-done                                                                                   
+done
 
-useradd -m -p $randString "$1"
+echo "Consider using the following password:"
+echo $randString
+
+useradd -m "$1"
 
 echo "User $1 created with password:
 $randString"
