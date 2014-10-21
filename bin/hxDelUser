@@ -4,19 +4,19 @@
 #Ex: ./hxDelUser testUser
 
 uniqueId=$RANDOM
-mkdir -p /tmp/$uniqueID/
+mkdir -p /tmp/$uniqueId/
 
 xen-list-images > /tmp/$uniqueId/all
 
-for i in $( cat /tmp/$uniqueID/all ); do
-	if [[ "$(head -n$i /tmp/$uniqueID/all | tail -n1 | cut -f2- -d\ | cut -f1 -d\.)" == "$1" ]]
+for i in $( cat /tmp/$uniqueId/all ); do
+	if [[ $(echo "$i" | tail -n1 | cut -f2- -d\ | cut -f1 -d\. | cut -f1 -d\-) == "$1" ]]
 	then
-		echo $(head -n$i /tmp/$uniqueID/all | tail -n1 | cut -f2- -d\ ) >> /tmp/$uniqueId/hostnames
+		echo "$i" | cut -f2- -d\ ) >> /tmp/$uniqueId/hostnames
 	fi
 done
 
 for j in $( cat /tmp/$uniqueId/hostnames)
-	hxDelVM "$(head -n$j /tmp/$uniqueID/hostnames | tail -n1)"
+	hxDelVM "$j"
 done
 
 userdel -r "$1"
