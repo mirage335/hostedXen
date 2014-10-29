@@ -5,7 +5,7 @@
 
 hxHostname="$1-$2"."$(hostname -f)"
 
-xen-create-image --hostname "$hxHostname" --ip auto --gateway 10.174.0.1 --netmask 255.255.0.0 --vcpus 2 --pygrub --fs=ext4 --dist "$3" "$@"
+xen-create-image --hostname "$hxHostname" --ip auto --gateway 10.174.0.1 --netmask 255.255.0.0 --vcpus 2 --pygrub --fs=ext4 --image=full --dist "$3" "$@"
 
 echo "$hxHostname" >> /home/"$1"/xenList
 
