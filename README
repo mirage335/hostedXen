@@ -18,3 +18,7 @@ auto br
 
 _InitIPs_
 Run the hxInitIPs script to initialize the pool of usable IP addresses for new Xen servers.
+
+_Xen CFG_
+*) Uncomment lines referring to "-nat" and comment other vif-script/network-script lines in /etc/xen/xend-config.sxp .
+*) Uncomment "dir = /home/xen" in /etc/xen-tools/xen-tools.conf .
