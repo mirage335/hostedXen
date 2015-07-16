@@ -4,7 +4,16 @@ Simply do "make install" on a compatible Xen Dom0. Then ensure NAT is configured
 Instructions on creating a Debian Dom0 are documented at https://wiki.debian.org/Xen#Domain_0_.28Host.29_Installation .
 
 _NAT_
+-Sysctl-
+net.ipv4.ip_forward = 1
 
+-IPTables-
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+-Forwarding-
+/sbin/iptables -t nat -A PREROUTING -p tcp -i eth0 --dport 20283 -j DNAT --to 10.174.10.5:22
+
+-Interface-
 Something like the following will be needed for network configuration in /etc/network/interfaces .
 
 auto br
@@ -15,6 +24,8 @@ auto br
 	netmask 255.255.0.0
 	network 10.174.0.0/16
 	broadcast 10.174.255.255
+
+
 
 _InitIPs_
 Run the hxInitIPs script to initialize the pool of usable IP addresses for new Xen servers.
