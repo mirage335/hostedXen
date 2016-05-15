@@ -3,6 +3,8 @@
 #Usage: ./hxDelVM <hostname> <user>
 #Ex: ./hxDelVM testUser-1.HacDC-shared-m335-1.hacdc.org testUser
 
+xl destroy "$1"
+
 xen-delete-image "$1" --dir=/opt/hostedXen/"$1"
 rmdir /opt/hostedXen/"$1"/domains
 rmdir /opt/hostedXen/"$1"
