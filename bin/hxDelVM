@@ -15,6 +15,13 @@ then
 	mv /home/"$2"/xenList.new /home/"$2"/xenList
 fi
 
+#Update user's xenList.
+if [[ -f /etc/hosts ]]
+then
+	grep -v "$1" /etc/hosts > /etc/hosts.new
+	mv /etc/hosts.new /etc/hosts
+fi
+
 #Update sudo permissions.
 rm /etc/sudoers.d/xen-$(echo "$1" | cut -f1 -d\.)
 
