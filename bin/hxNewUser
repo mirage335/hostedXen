@@ -16,4 +16,4 @@ useradd -m -s "/bin/bash" "$1"
 echo "User $1 created. Add password. Consider: $randomString"
 passwd "$1"
 
-hxNewVM "$1" 1 squeeze
+hxNewVM "$1" 1 jessie
