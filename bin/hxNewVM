@@ -5,7 +5,8 @@
 
 hxHostname="$1-$2"."$(hostname -f)"
 
-hxDir=/opt/hostedXen/"$1-$2"
+#hxDir=/opt/hostedXen/"$1-$2"
+hxDir=/opt/hostedXen/"$hxHostname"
 
 mkdir -p "$hxDir"
 

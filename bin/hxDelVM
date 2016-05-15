@@ -3,7 +3,7 @@
 #Usage: ./hxDelVM <hostname> <user>
 #Ex: ./hxDelVM testUser-1.HacDC-shared-m335-1.hacdc.org testUser
 
-xen-delete-image "$1"
+xen-delete-image "$1" --dir=/opt/hostedXen/"$1"
 
 #Update user's xenList.
 if [[ -f /home/"$2"/xenList ]]
