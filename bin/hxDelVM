@@ -4,6 +4,8 @@
 #Ex: ./hxDelVM testUser-1.HacDC-shared-m335-1.hacdc.org testUser
 
 xen-delete-image "$1" --dir=/opt/hostedXen/"$1"
+rmdir /opt/hostedXen/"$1"
+rm /etc/xen/"$1".cfg
 
 #Update user's xenList.
 if [[ -f /home/"$2"/xenList ]]
